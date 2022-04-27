@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <img class="logo" src="./assets/disney_logo.png" />
+    </div>
+    <div>
+      <Gallery id="gallery"></Gallery>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Gallery from "./components/gallery.vue";
+import get_disney_data from "@/services/api/disneyAPI.js";
+let current_page = 0;
+get_disney_data(current_page);
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Gallery,
+  },
+};
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: "Mouse Memoirs", sans-serif;
+}
+
+.title {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+.logo {
+  height: 50%;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
