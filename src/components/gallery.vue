@@ -21,18 +21,30 @@
     <div class="tab">
       <div v-for="data in characterOrganizedData" :key="data._id">
         <Card
-          v-on:click.native="doStuff(data)"
+          v-on:click.native="doStuff(data, 0)"
           :name="data.name"
           :pictureURL="data.imageUrl"
         ></Card>
       </div>
       <div class="card_info" v-show="is_visible">
-        <CardInfo :name="stock.name"></CardInfo>
+        <CardInfo
+          :name="stock.name"
+          :pictureURL="stock.imageUrl"
+          :films="stock.films"
+          :allies="stock.allies"
+          :enemies="stock.enemies"
+          :parkAttractions="stock.parkAttractions"
+          :shortFilms="stock.shortFilms"
+          :tvShows="stock.tvShows"
+          :videoGames="stock.videoGames"
+          v-on:click.native="doStuff(data, 1)"
+        ></CardInfo>
       </div>
     </div>
     <div class="next">
       <p>Page : {{ count }} / 149</p>
-      <button v-on:click="download()">Next</button>
+      <button v-if="count > 1" v-on:click="previous()">Précédent</button>
+      <button v-on:click="next()">Suivant</button>
     </div>
   </div>
 </template>
@@ -88,18 +100,33 @@ export default {
       this.disney_data = await get_disney_data(current_page);
       this.disney_data = this.disney_data["data"];
       this.data = 0;
-      //console.log(this.disney_data);
+      console.log(this.disney_data);
       // for (var id in this.disney_data) {
       //   console.log(this.disney_data[id].name);
       // }
     },
-    download: function () {
+    next: function () {
       this.retrieve_disney_data(this.count);
       this.count++;
+      console.log(this.count);
     },
-    doStuff: function (data) {
-      this.is_visible = !this.is_visible;
-      this.stock = data;
+    previous: function () {
+      this.count = this.count - 2;
+      this.retrieve_disney_data(this.count);
+      this.count++;
+      console.log(this.count);
+    },
+    doStuff: function (data, index) {
+      if (index === 1) {
+        this.is_visible = !this.is_visible;
+      } else {
+        if (this.is_visible === true) {
+          this.stock = data;
+        } else {
+          this.is_visible = !this.is_visible;
+          this.stock = data;
+        }
+      }
     },
   },
 };

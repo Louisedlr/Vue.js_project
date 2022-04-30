@@ -28,6 +28,7 @@ export default {
 
 #app {
   font-family: "Mouse Memoirs", sans-serif;
+  background: #f7f7f7;
 }
 
 .title {

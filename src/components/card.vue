@@ -41,7 +41,7 @@ export default {
   /* background-color: #ffc7f5; */
 
   background-color: #bdd6ff;
-  filter: drop-shadow(5px 15px 15px #dddddd);
+  /* filter: drop-shadow(5px 15px 15px #bdd6ff); */
   border-radius: 10px;
   margin: 10%;
   display: flex;
