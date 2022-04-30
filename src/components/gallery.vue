@@ -18,17 +18,16 @@
       </div> -->
     </div>
 
-    <div class="card_info" v-show="is_visible">
-      <CardInfo name="test"></CardInfo>
-    </div>
-
     <div class="tab">
       <div v-for="data in characterOrganizedData" :key="data._id">
         <Card
-          v-on:click.native="doStuff()"
+          v-on:click.native="doStuff(data)"
           :name="data.name"
           :pictureURL="data.imageUrl"
         ></Card>
+      </div>
+      <div class="card_info" v-show="is_visible">
+        <CardInfo :name="stock.name"></CardInfo>
       </div>
     </div>
     <div class="next">
@@ -77,6 +76,7 @@ export default {
       characterSortType: "AZname",
       is_visible: false,
       count: 1,
+      stock: [],
     };
   },
 
@@ -97,8 +97,9 @@ export default {
       this.retrieve_disney_data(this.count);
       this.count++;
     },
-    doStuff: function () {
+    doStuff: function (data) {
       this.is_visible = !this.is_visible;
+      this.stock = data;
     },
   },
 };

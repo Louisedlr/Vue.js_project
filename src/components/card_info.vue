@@ -40,8 +40,13 @@ p {
 .cube_info {
   background-color: #fdb8ff;
   border-radius: 5%;
-  width: 15vw;
-  height: 30 vh;
+  width: 50vw;
+  height: 50 vh;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  right: 25%;
 }
 
 /* img {
