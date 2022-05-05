@@ -26,9 +26,12 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
 
+body {
+  background: #f7f7f7;
+}
+
 #app {
   font-family: "Mouse Memoirs", sans-serif;
-  background: #f7f7f7;
 }
 
 .title {
@@ -43,5 +46,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5%;
+  margin-top: 5%;
 }
 </style>
