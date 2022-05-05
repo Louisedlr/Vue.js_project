@@ -2,7 +2,7 @@
   <div id="gallery">
     <div class="gallery_option">
       <input
-        class="shearch_bar"
+        class="search-bar"
         type="text"
         v-model="search"
         placeholder="Chercher un personnage"
@@ -46,6 +46,18 @@
       <button v-if="count > 1" v-on:click="previous()">Précédent</button>
       <button v-on:click="next()">Suivant</button>
     </div>
+    <div class="search-page-number">
+      <input
+        type="number"
+        name="page_number"
+        min="1"
+        max="149"
+        :value="search_page"
+        @input="fill_input"
+      />
+      <!-- <input type="number" class="form-control" :value="val" @input="inputChange" v-on:keyup.enter="search()"> -->
+      <button v-on:click="search_page_function()">Chercher</button>
+    </div>
   </div>
 </template>
 
@@ -53,6 +65,7 @@
 import Card from "./card.vue";
 import CardInfo from "./card_info.vue";
 import get_disney_data from "@/services/api/disneyAPI.js";
+//
 
 export default {
   name: "Gallery",
@@ -89,6 +102,7 @@ export default {
       is_visible: false,
       count: 1,
       stock: [],
+      search_page: 1,
     };
   },
 
@@ -100,7 +114,7 @@ export default {
       this.disney_data = await get_disney_data(current_page);
       this.disney_data = this.disney_data["data"];
       this.data = 0;
-      console.log(this.disney_data);
+      // console.log(this.disney_data);
       // for (var id in this.disney_data) {
       //   console.log(this.disney_data[id].name);
       // }
@@ -108,13 +122,31 @@ export default {
     next: function () {
       this.retrieve_disney_data(this.count);
       this.count++;
-      console.log(this.count);
+      // console.log(this.count);
     },
     previous: function () {
       this.count = this.count - 2;
       this.retrieve_disney_data(this.count);
       this.count++;
-      console.log(this.count);
+      // console.log(this.count);
+    },
+    fill_input(e) {
+      this.search_page = e.target.value;
+      console.log(this.search_page);
+
+      // inputChange(e) {
+      //       const currentValue = e.target.value;
+      //       const option = this.options.find((option) => {
+      //           return option.value === currentValue;
+      //       });
+      //       this.$emit("input", option);
+      //       alert(currentValue);
+      //   },
+    },
+    search_page_function: function () {
+      this.count = this.search_page;
+      this.retrieve_disney_data(this.count - 1);
+      console.log("count  " + this.count);
     },
     doStuff: function (data, index) {
       if (index === 1) {
@@ -133,12 +165,13 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Source+Serif+4&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
 #gallery {
   display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;
   font-size: 20px;
+  font-weight: 200;
 }
 
 .gallery_option {
@@ -176,6 +209,20 @@ export default {
   align-items: center;
   gap: 5%;
   margin-top: 10%;
+  margin-bottom: 3%;
+}
+
+.search-page-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
   margin-bottom: 10%;
+}
+
+.search-bar {
+  width: 30vw;
+  text-align: center;
 }
 </style>

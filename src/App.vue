@@ -42,5 +42,6 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5%;
 }
 </style>

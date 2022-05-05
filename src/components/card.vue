@@ -2,7 +2,7 @@
   <div id="card">
     <div v-on:click="doStuff()">
       <img class="picture" v-bind:src="pictureURL" />
-      <p class="description">Name : {{ name }}</p>
+      <p class="description"><span class="bold">Nom : </span>{{ name }}</p>
       <p class="description-click">Click for more information</p>
     </div>
   </div>
@@ -68,10 +68,14 @@ export default {
 
 .picture {
   height: 10vh;
-  max-width: 20vh;
+  max-width: 20vw;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
+}
+
+.bold {
+  font-weight: 400;
 }
 </style>
