@@ -1,6 +1,6 @@
 <template>
   <div id="gallery">
-    <div class="gallery_option">
+    <!-- <div class="gallery_option">
       <input
         class="search-bar"
         type="text"
@@ -11,13 +11,18 @@
       <select v-model="characterSortType" id="character-sort">
         <option value="AZName">Noms de A à Z</option>
         <option value="ZAName">Noms de Z à A</option>
-      </select>
+      </select> -->
 
-      <!-- <div>
+    <!-- <div>
         <button v-on:click="doStuff()">Details</button>
       </div> -->
+    <!-- </div> -->
+    <div>
+      <GalleryOptions
+        :search.sync="search"
+        :characterSortType.sync="characterSortType"
+      />
     </div>
-
     <div class="tab">
       <div v-for="data in characterOrganizedData" :key="data._id">
         <Card
@@ -65,6 +70,8 @@
 import Card from "./card.vue";
 import CardInfo from "./card_info.vue";
 import get_disney_data from "@/services/api/disneyAPI.js";
+import GalleryOptions from "./gallery_option.vue";
+
 //
 
 export default {
@@ -72,6 +79,7 @@ export default {
   components: {
     Card,
     CardInfo,
+    GalleryOptions,
   },
 
   props: {
@@ -97,8 +105,8 @@ export default {
   data() {
     return {
       disney_data: [],
-      search: "",
-      characterSortType: "AZname",
+      search: localStorage.getItem("search") || "",
+      characterSortType: localStorage.getItem("characterSortType") || "AZName",
       is_visible: false,
       count: 1,
       stock: [],
@@ -172,16 +180,6 @@ export default {
   font-family: "Poppins", sans-serif;
   font-size: 20px;
   font-weight: 200;
-}
-
-.gallery_option {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  gap: 10px;
 }
 
 .tab {

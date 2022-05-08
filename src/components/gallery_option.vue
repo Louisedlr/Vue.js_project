@@ -1,45 +1,48 @@
 <template>
   <div class="gallery_option">
     <input
-      class="shearch_bar"
       type="text"
-      :v-model="search"
+      :value="search"
+      @input="onSearchChanged"
       placeholder="Chercher un personnage"
     />
+    <button v-if="search" @click="cleanSearch">X</button>
     <label for="character-sort">Trier par : </label>
-    <select v-model="characterSort" id="character-sort">
-      <option value="AZName" v-on:input="update('AZName')">
-        Noms de A à Z
-      </option>
-      <option value="ZAName" v-on:input="update('ZAName')">
-        Noms de Z à A
-      </option>
+    <select
+      :value="characterSortType"
+      @input="onCharacterSortTypeChanged"
+      id="character-sort"
+    >
+      <option value="AZName">Noms de A à Z</option>
+      <option value="ZAName">Noms de Z à A</option>
     </select>
-    <p>{{ characterSortType }}</p>
-
-    <div>
-      <button v-on:click="doStuff(' test', $event)">My button</button>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Gallery_option",
+  name: "GalleryOptions",
   props: {
     search: String,
-    characterSortType: { type: String, default: "AZName" },
+    characterSortType: String,
   },
-  data() {
-    return {};
+  watch: {
+    search: function (newSearch) {
+      localStorage.setItem("search", newSearch);
+    },
+    characterSortType: function (newcharacterSortType) {
+      localStorage.setItem("characterSortType", newcharacterSortType);
+    },
   },
   methods: {
-    doStuff: function (word, event) {
-      console.log(event.target);
+    cleanSearch: function () {
+      this.$emit("update:search", "");
     },
-    update(characterSort) {
-      console.log(characterSort);
-      this.characterSortType = characterSort;
+    onSearchChanged(event) {
+      this.$emit("update:search", event.target.value);
+    },
+    onCharacterSortTypeChanged(event) {
+      this.$emit("update:characterSortType", event.target.value);
     },
   },
 };
@@ -53,6 +56,6 @@ export default {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  gap: 10px;
 }
 </style>
