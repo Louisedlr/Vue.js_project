@@ -6,7 +6,7 @@
       @input="onSearchChanged"
       placeholder="Chercher un personnage"
     />
-    <button v-if="search" @click="cleanSearch">X</button>
+    <button v-if="search" @click="cleanSearch">Effacer</button>
     <label for="character-sort">Trier par : </label>
     <select
       :value="characterSortType"
