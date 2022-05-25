@@ -3,7 +3,7 @@
     <div v-on:click="doStuff()">
       <img class="picture" v-bind:src="pictureURL" />
       <p class="description"><span class="bold">Nom : </span>{{ name }}</p>
-      <p class="description-click">Click for more information</p>
+      <p class="description-click">Cliquer pour plus d' information</p>
     </div>
   </div>
 </template>
@@ -56,14 +56,14 @@ export default {
 
 .description {
   text-align: center;
-  font-size: 16px;
+  font-size: 2 vh;
   display: block;
   margin-left: 5%;
   margin-right: 5%;
 }
 
 .description-click {
-  font-size: 12px;
+  font-size: 1.5vh;
 }
 
 .picture {

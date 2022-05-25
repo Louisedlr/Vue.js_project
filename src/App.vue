@@ -35,7 +35,7 @@ body {
 }
 
 .title {
-  font-size: 5em;
+  font-size: 4vh;
   font-weight: bold;
 }
 

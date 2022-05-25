@@ -1,22 +1,5 @@
 <template>
   <div id="gallery">
-    <!-- <div class="gallery_option">
-      <input
-        class="search-bar"
-        type="text"
-        v-model="search"
-        placeholder="Chercher un personnage"
-      />
-      <label for="character-sort">Trier par : </label>
-      <select v-model="characterSortType" id="character-sort">
-        <option value="AZName">Noms de A à Z</option>
-        <option value="ZAName">Noms de Z à A</option>
-      </select> -->
-
-    <!-- <div>
-        <button v-on:click="doStuff()">Details</button>
-      </div> -->
-    <!-- </div> -->
     <div>
       <GalleryOptions
         :search.sync="search"
@@ -63,6 +46,7 @@
       <!-- <input type="number" class="form-control" :value="val" @input="inputChange" v-on:keyup.enter="search()"> -->
       <button v-on:click="search_page_function()">Chercher</button>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -71,6 +55,7 @@ import Card from "./card.vue";
 import CardInfo from "./card_info.vue";
 import get_disney_data from "@/services/api/disneyAPI.js";
 import GalleryOptions from "./gallery_option.vue";
+import Footer from "./footer.vue";
 
 //
 
@@ -80,6 +65,7 @@ export default {
     Card,
     CardInfo,
     GalleryOptions,
+    Footer,
   },
 
   props: {
@@ -141,15 +127,6 @@ export default {
     fill_input(e) {
       this.search_page = e.target.value;
       console.log(this.search_page);
-
-      // inputChange(e) {
-      //       const currentValue = e.target.value;
-      //       const option = this.options.find((option) => {
-      //           return option.value === currentValue;
-      //       });
-      //       this.$emit("input", option);
-      //       alert(currentValue);
-      //   },
     },
     search_page_function: function () {
       this.count = this.search_page;
@@ -178,20 +155,11 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;
-  font-size: 20px;
+  font-size: 2.5vh;
   font-weight: 200;
 }
 
 .tab {
-  /* display: grid;
-  grid-template-columns: 20vw 20vw 20vw;
-  justify-content: space-around;
-  align-items: center;
-  justify-self: stretch;
-  margin: auto;
-  column-gap: 1%;
-  row-gap: 1%;
-  margin-top: 5%; */
   display: grid;
   grid-template-columns: 20vw 20vw 20vw;
   justify-content: space-around;
@@ -219,8 +187,15 @@ export default {
   margin-bottom: 10%;
 }
 
-.search-bar {
-  width: 30vw;
-  text-align: center;
+@media screen and (max-width: 966px) {
+  .tab {
+    grid-template-columns: 40vh 40vh;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tab {
+    grid-template-columns: 60vh;
+  }
 }
 </style>

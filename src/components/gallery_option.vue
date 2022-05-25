@@ -1,6 +1,7 @@
 <template>
   <div class="gallery_option">
     <input
+      class="search-bar"
       type="text"
       :value="search"
       @input="onSearchChanged"
@@ -56,6 +57,11 @@ export default {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  gap: 10px;
+  gap: 15px;
+}
+
+.search-bar {
+  width: 40vw;
+  text-align: center;
 }
 </style>
