@@ -39,7 +39,6 @@
 <script>
 export default {
   name: "CardInfo",
-  // props: ["name", "pictureURL", "story"],
   props: {
     name: String,
     pictureURL: {
@@ -72,7 +71,6 @@ p {
 .close {
   text-align: left;
   padding-top: 2%;
-  /* padding-left: 5%; */
   font-size: 1.5vh;
 }
 
@@ -80,33 +78,26 @@ p {
   max-height: 50%;
   overflow: auto;
   background-color: #4089ff;
-  filter: drop-shadow(5px 15px 15px #f7f7f7);
+  filter: drop-shadow(5px 15px 15px #888a89);
   border-radius: 5%;
   width: 50vw;
   height: 50 vh;
   padding-left: 2%;
   padding-right: 2%;
   position: fixed;
-  top: 20%;
+  top: 25%;
   left: 25%;
   right: 25%;
 }
 
-/* .ligne {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2%;
-} */
-
 .picture-info {
-  max-width: 15vw;
-  max-height: 20vh;
+  max-width: 25vw;
+  max-height: 30vh;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3%;
   margin-bottom: 5%;
+  border-radius: 5%;
 }
 </style>

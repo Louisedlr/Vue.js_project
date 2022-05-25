@@ -9,7 +9,7 @@
     <div class="tab">
       <div v-for="data in characterOrganizedData" :key="data._id">
         <Card
-          v-on:click.native="doStuff(data, 0)"
+          v-on:click.native="is_info_show(data, 0)"
           :name="data.name"
           :pictureURL="data.imageUrl"
         ></Card>
@@ -25,7 +25,7 @@
           :shortFilms="stock.shortFilms"
           :tvShows="stock.tvShows"
           :videoGames="stock.videoGames"
-          v-on:click.native="doStuff(data, 1)"
+          v-on:click.native="is_info_show(data, 1)"
         ></CardInfo>
       </div>
     </div>
@@ -57,8 +57,6 @@ import get_disney_data from "@/services/api/disneyAPI.js";
 import GalleryOptions from "./gallery_option.vue";
 import Footer from "./footer.vue";
 
-//
-
 export default {
   name: "Gallery",
   components: {
@@ -81,7 +79,6 @@ export default {
       const comparator = (a, b) => a[field].localeCompare(b[field]);
       let data = this.disney_data.filter(filterFunc);
       data = data.sort(comparator);
-      //let data = this.disney_data;
       if (reversed === -1) {
         data = data.reverse();
       }
@@ -109,20 +106,15 @@ export default {
       this.disney_data = this.disney_data["data"];
       this.data = 0;
       // console.log(this.disney_data);
-      // for (var id in this.disney_data) {
-      //   console.log(this.disney_data[id].name);
-      // }
     },
     next: function () {
       this.retrieve_disney_data(this.count);
       this.count++;
-      // console.log(this.count);
     },
     previous: function () {
       this.count = this.count - 2;
       this.retrieve_disney_data(this.count);
       this.count++;
-      // console.log(this.count);
     },
     fill_input(e) {
       this.search_page = e.target.value;
@@ -133,7 +125,7 @@ export default {
       this.retrieve_disney_data(this.count - 1);
       console.log("count  " + this.count);
     },
-    doStuff: function (data, index) {
+    is_info_show: function (data, index) {
       if (index === 1) {
         this.is_visible = !this.is_visible;
       } else {
@@ -161,7 +153,7 @@ export default {
 
 .tab {
   display: grid;
-  grid-template-columns: 20vw 20vw 20vw;
+  grid-template-columns: 30vw 30vw 30vw;
   justify-content: space-around;
   margin-left: 10%;
   margin-right: 10%;
