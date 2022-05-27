@@ -13,7 +13,7 @@
     <div v-for="allie in allies" :key="allie">
       <p>{{ allie }}</p>
     </div>
-    <p class="bold" v-if="enemies[0]">Enemies :</p>
+    <p class="bold" v-if="enemies[0]">Ennemi :</p>
     <div v-for="enemie in enemies" :key="enemie">
       <p>{{ enemie }}</p>
     </div>
@@ -29,7 +29,7 @@
     <div v-for="tvShow in tvShows" :key="tvShow">
       <p>{{ tvShow }}</p>
     </div>
-    <p class="bold" v-if="videoGames[0]">Jeux Vidéos :</p>
+    <p class="bold" v-if="videoGames[0]">Jeu Vidéo :</p>
     <div v-for="videoGame in videoGames" :key="videoGame">
       <p>{{ videoGame }}</p>
     </div>
